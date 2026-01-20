@@ -1,0 +1,34 @@
+.footer {
+    background: var(--bg-secondary);
+    padding: 4rem 0 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.footer p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-links a {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}

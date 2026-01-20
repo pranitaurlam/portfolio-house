@@ -1,0 +1,25 @@
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.skill-badge {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: default;
+}
+
+.skill-badge:hover {
+    transform: translateY(-2px);
+    background: white;
+}
+
+/* Specific colors for types can be added here if needed, 
+   but we will handle valid colors dynamically or generally */

@@ -1,0 +1,64 @@
+.skills-container {
+    overflow: hidden;
+    padding: 2rem 0;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    position: relative;
+}
+
+.marquee-row {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    gap: 2rem;
+    min-width: 100%;
+    animation: scroll 20s linear infinite;
+}
+
+.marquee-content.reverse {
+    animation-direction: reverse;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Pause on hover */
+.marquee-row:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.skill-pill {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--text-primary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    white-space: nowrap;
+}
+
+.skill-pill:hover {
+    transform: scale(1.1);
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 10px 15px rgba(37, 99, 235, 0.2);
+    cursor: pointer;
+}

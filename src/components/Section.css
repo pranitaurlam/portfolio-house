@@ -1,0 +1,44 @@
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    min-height: 1.8rem;
+    /* Prevent layout jump */
+}
+
+.about-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: var(--accent-color);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    height: 1.2em;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

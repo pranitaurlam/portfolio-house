@@ -1,0 +1,98 @@
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+/* Base state for content to sit above the pseudo-element */
+.project-content {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s;
+}
+
+/* The Radial Gradient Layer */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    /* Large enough to cover */
+    height: 200%;
+    background: linear-gradient(135deg, var(--accent-color), #8b5cf6, #ec4899);
+    transform: translate(-50%, -50%) scale(0);
+    /* Start hidden/small */
+    border-radius: 50%;
+    z-index: 0;
+    /* Behind content */
+    transition: transform 0.5s ease-out;
+}
+
+.project-card:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    /* Expand to fill */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    border-color: transparent;
+}
+
+/* Text color changes on hover for contrast */
+.project-card:hover h3 {
+    color: white;
+}
+
+.project-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.project-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    transition: color 0.3s;
+}
+
+.project-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tech span {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+/* Adjust tag style on hover to fit the new dark background */
+.project-card:hover .project-tech span {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
