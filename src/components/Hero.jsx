@@ -10,7 +10,7 @@ const Hero = () => {
                     Hi, I'm <span className="highlight">Pranita Urlam</span>
                 </h1>
                 <p className="hero-subtitle fade-in-up delay-200">
-                    First-year student at Polaris School of Technology with a strong interest in software development.
+                    First-year student at Medhavi Skills University WISE program by Polaris School of Technology with a strong interest in software development.
                 </p>
                 <div className="hero-buttons fade-in-up delay-300">
                     <a href={portfolioData.about.socials.github} target="_blank" rel="noreferrer" className="btn primary">
