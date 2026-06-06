@@ -36,32 +36,38 @@ export const portfolioData = {
     {
       title: "Expense Tracker",
       description: "A responsive web app with login authentication, dark mode, and category-wise expense tracking.",
-      tech: ["HTML", "CSS", "JavaScript"]
+      tech: ["HTML", "CSS", "JavaScript"],
+      link: "https://expense-tracker-tau-black-21.vercel.app/login.html"
     },
     {
       title: "K-POP Gallery",
       description: "A React.js project showcasing popular 3rd generation K-pop groups using card components.",
-      tech: ["React.js", "JavaScript"]
+      tech: ["React.js", "JavaScript"],
+      link: "https://react-k-pop-3rd-gen-gallery.vercel.app/"
     },
     {
       title: "Digital Clock",
       description: "A digital clock application built using React to understand time-based state updates.",
-      tech: ["React.js", "JavaScript"]
+      tech: ["React.js", "JavaScript"],
+      link: "https://digital-clock-five-vert.vercel.app/"
     },
     {
       title: "Counter App",
       description: "Interactive Counter Application to understand core React concepts like state and events.",
-      tech: ["React.js", "JavaScript"]
+      tech: ["React.js", "JavaScript"],
+      link: "https://counter-react-practics.vercel.app/"
     },
     {
       title: "To-Do List",
       description: "A simple task management application to organized daily activities.",
-      tech: ["JavaScript"]
+      tech: ["JavaScript"],
+      link: "https://to-do-list-phi-two-92.vercel.app/"
     },
     {
       title: "Portfolio",
       description: "This professional portfolio website built with React and custom CSS.",
-      tech: ["React.js", "CSS"]
+      tech: ["React.js", "CSS"],
+      link: "https://portfolio-house.vercel.app"
     }
   ],
   journey: {
