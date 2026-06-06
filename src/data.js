@@ -16,6 +16,24 @@ export const portfolioData = {
   },
   projects: [
     {
+      title: "AptiCore",
+      description: "An aptitude preparation platform with topic-wise practice questions and performance tracking.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+      link: "https://apti-core-aerg.vercel.app/"
+    },
+    {
+      title: "Student Learning Progress Management Platform",
+      description: "A full-stack platform to track and manage student learning progress across courses and modules.",
+      tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose"],
+      link: "https://student-learning-progress-managemen-three.vercel.app/"
+    },
+    {
+      title: "Task Management",
+      description: "A task and cart management application to organise and track items efficiently.",
+      tech: ["React.js", "JavaScript"],
+      link: "https://cart-management-bice.vercel.app/"
+    },
+    {
       title: "Expense Tracker",
       description: "A responsive web app with login authentication, dark mode, and category-wise expense tracking.",
       tech: ["HTML", "CSS", "JavaScript"]
