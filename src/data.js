@@ -10,7 +10,8 @@ export const portfolioData = {
   skills: {
     languages: ["C", "Java", "JavaScript", "Python", "DSA"],
     frontend: ["HTML", "CSS", "React.js"],
-    database: ["SQL", "PostgreSQL"],
+    backend: ["Node.js", "Express.js"],
+    database: ["SQL", "PostgreSQL", "MongoDB", "Mongoose"],
     tools: ["Git", "GitHub"]
   },
   projects: [
