@@ -14,7 +14,7 @@ const Contact = () => {
                     <a href="mailto:pranitaurlam@gmail.com">Email</a>
                 </div>
                 <div className="copyright">
-                    © {new Date().getFullYear()} Pranita Urlam. All rights reserved.
+                    © {new Date().getFullYear()} Urlam Pranita. All rights reserved.
                 </div>
             </div>
         </footer>

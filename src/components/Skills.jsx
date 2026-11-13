@@ -10,6 +10,7 @@ const Skills = () => {
         ...portfolioData.skills.backend,
         ...portfolioData.skills.database,
         ...portfolioData.skills.tools,
+        ...portfolioData.skills.foundations,
         "Problem Solving",
         "Teamwork"
     ];

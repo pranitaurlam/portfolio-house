@@ -1,18 +1,20 @@
 export const portfolioData = {
   about: {
     title: "About Me",
-    description: "Hi, I’m Pranita Urlam, a first-year student at Medhavi Skills University WISE program by Polaris School of Technology with a strong interest in software development and open-source systems. I enjoy building clean, efficient solutions and continuously improving my problem-solving skills through hands-on projects and coding practice.\n\nI have experience with **C, Python, Java, JavaScript, HTML, CSS, SQL, DSA, React.js, Node.js, Express.js, MongoDB, Mongoose**, and I’m exploring **full-stack development**. I’m actively looking for opportunities to learn, contribute, and grow as a software engineer.",
+    description: "Hi, I’m Urlam Pranita, a student at Medhavi Skills University WISE program by Polaris School of Technology with a strong interest in software development and open-source systems. I enjoy building clean, efficient solutions and continuously improving my problem-solving skills through hands-on projects and coding practice.\n\nI have experience with **C, Python, Java, GO lang, JavaScript, HTML, CSS, SQL, DSA, React.js, Node.js, Express.js, MongoDB, Mongoose, Redux tool-kit, DataScience, Mathematics (AI/ML), System Design**, and I’m exploring **full-stack development**. I’m actively looking for opportunities to learn, contribute, and grow as a software engineer.",
     socials: {
+      
       github: "https://github.com/pranitaurlam",
       linkedin: "https://www.linkedin.com/in/pranita-urlam-811869320/"
     }
   },
   skills: {
-    languages: ["C", "Java", "JavaScript", "Python", "DSA"],
-    frontend: ["HTML", "CSS", "React.js"],
+    languages: ["C", "Java", "JavaScript", "Python", "GO lang", "DSA"],
+    frontend: ["HTML", "CSS", "React.js", "Redux tool-kit"],
     backend: ["Node.js", "Express.js"],
     database: ["SQL", "PostgreSQL", "MongoDB", "Mongoose"],
-    tools: ["Git", "GitHub"]
+    tools: ["Git", "GitHub"],
+    foundations: ["DataScience", "Mathematics (AI/ML)", "System Design"]
   },
   projects: [
     {
@@ -22,10 +24,36 @@ export const portfolioData = {
       link: "https://apti-core-aerg.vercel.app/"
     },
     {
+      title: "IPL Match Predictor",
+      description: "IPL match winner prediction — a data pipeline (EDA and feature engineering) over 1,212 real matches from 2007–2026, with a React dashboard for head-to-head win estimates.",
+      tech: ["Python", "Jupyter Notebook", "Data Science", "React.js"],
+      link: "https://frontend-gamma-three-eabsug3sbm.vercel.app/",
+      repo: "https://github.com/pranitaurlam/ipl-match-predictor"
+    },
+    {
       title: "Student Learning Progress Management Platform",
       description: "A full-stack platform to track and manage student learning progress across courses and modules.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose"],
       link: "https://student-learning-progress-managemen-three.vercel.app/"
+    },
+    {
+      title: "Jasmine AI",
+      description: "An AI beauty assistant for personalised skincare and makeup — built to replace guesswork with data-driven recommendations.",
+      tech: ["React.js", "Vite", "JavaScript", "CSS"],
+      link: "https://jasmine-cosmetics-ai.vercel.app/"
+    },
+    {
+      title: "Moonlit Pages",
+      description: "A digital memory journal — preserve photos, write stories and collect moments in one beautiful personal scrapbook.",
+      tech: ["Next.js", "React.js", "JavaScript"],
+      link: "https://moonlit-pages-sigma.vercel.app/"
+    },
+    {
+      title: "PantryClean",
+      description: "Paste any recipe and get normalised ingredients back — smart unit conversion, ambiguity detection and export-ready output, all client-side.",
+      tech: ["HTML", "CSS", "JavaScript"],
+      link: "https://ojt-recipeunitnormalizer.vercel.app/",
+      repo: "https://github.com/pranitaurlam/OJT-recipe_unit_normalizer"
     },
     {
       title: "Task Management",
