@@ -210,7 +210,7 @@ button{font:inherit;color:inherit;background:none;border:none}
 .ui > *{pointer-events:auto}
 
 .tag{
-  position:absolute; display:flex; align-items:center;
+  position:absolute; z-index:5; display:flex; align-items:center;
   height:calc(37*var(--n)); padding:0 calc(18*var(--n));
   background:#fff; color:var(--ink); white-space:nowrap;
   font-size:calc(16.5*var(--n)); font-weight:650; letter-spacing:-.02em;
@@ -225,11 +225,12 @@ button{font:inherit;color:inherit;background:none;border:none}
 .tag:active{transform:translateY(calc(1*var(--n))); box-shadow:0 calc(1*var(--n)) 0 rgba(0,0,0,.22)}
 .t1{left:calc(30*var(--n)); top:calc(7*var(--n))}
 .t2{left:calc(233*var(--n)); top:calc(7*var(--n))}
+.t5{left:calc(390*var(--n)); top:calc(7*var(--n))}
 .t3{right:calc(244*var(--n)); top:calc(7*var(--n))}
 .t4{right:calc(32*var(--n)); top:calc(7*var(--n))}
 
 .logo{
-  position:absolute; left:50%; top:calc(14*var(--n)); transform:translateX(-50%);
+  position:absolute; z-index:5; left:50%; top:calc(14*var(--n)); transform:translateX(-50%);
   font-weight:600; font-size:calc(19*var(--n)); letter-spacing:.14em;
   opacity:0; transition:opacity .4s; cursor:pointer;
 }
@@ -309,6 +310,172 @@ body.is-case .nav-case.dim{opacity:.45}
 .nav-case span{font-weight:600; font-size:calc(15*var(--n)); line-height:1.05; text-align:center}
 .m-only{display:none}
 
+/* ---------- stack page ---------- */
+.stack{
+  position:fixed; inset:0; z-index:1; opacity:0; visibility:hidden;
+  pointer-events:none; display:flex; flex-direction:column;
+  transition:opacity .5s ease, visibility .5s;
+}
+body.is-stack .stack{opacity:1; visibility:visible; pointer-events:auto}
+body.is-stack .about, body.is-stack .hint, body.is-stack .projects,
+body.is-stack .ticket, body.is-stack .desc, body.is-stack .nav-case,
+body.is-stack .logo, body.is-stack .m-only{visibility:hidden; pointer-events:none}
+body.is-stack .t5{background:#e8d6a8}
+
+.stack .close{
+  position:absolute; top:calc(62*var(--n)); right:calc(30*var(--n)); z-index:6;
+  width:calc(42*var(--n)); height:calc(42*var(--n)); border-radius:50%;
+  display:grid; place-items:center; cursor:pointer;
+  color:#e8d6a8; font-size:calc(21*var(--n)); line-height:1;
+  box-shadow:inset 0 0 0 1px rgba(233,214,168,.45);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), background .25s;
+}
+.stack .close:hover{background:rgba(233,214,168,.18); transform:rotate(90deg)}
+.stack .veil{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(70% 55% at 50% 12%, rgba(201,169,97,.20) 0%, rgba(201,169,97,0) 62%),
+    radial-gradient(90% 70% at 50% 110%, rgba(207,238,224,.16) 0%, rgba(207,238,224,0) 60%),
+    linear-gradient(180deg, rgba(8,34,24,.93) 0%, rgba(9,42,29,.95) 55%, rgba(11,48,33,.97) 100%);
+  backdrop-filter:blur(14px) saturate(1.1);
+}
+
+/* drifting sparkles */
+.sparks{position:absolute; inset:0; overflow:hidden}
+.sp{position:absolute; width:calc(4*var(--n)); height:calc(4*var(--n)); border-radius:50%;
+  background:#f3e6c4; box-shadow:0 0 calc(10*var(--n)) rgba(233,214,168,.9);
+  opacity:0; animation:twinkle var(--dur,7s) ease-in-out var(--dl,0s) infinite}
+@keyframes twinkle{
+  0%{opacity:0; transform:translateY(0) scale(.6)}
+  25%{opacity:.9; transform:translateY(calc(-18*var(--n))) scale(1)}
+  60%{opacity:.35; transform:translateY(calc(-40*var(--n))) scale(.8)}
+  100%{opacity:0; transform:translateY(calc(-70*var(--n))) scale(.5)}
+}
+
+.stack-scroll{position:relative; flex:1; overflow-y:auto; overflow-x:hidden;
+  padding:calc(74*var(--n)) calc(40*var(--n)) calc(26*var(--n));
+  -webkit-overflow-scrolling:touch; scrollbar-width:none}
+.stack-scroll::-webkit-scrollbar{display:none}
+.stack-inner{max-width:calc(1240*var(--n)); margin:0 auto}
+
+.stack h1{
+  font-family:'Anton',sans-serif; font-weight:400; letter-spacing:.01em;
+  font-size:calc(74*var(--n)); line-height:.94; text-align:center;
+  background:linear-gradient(180deg,#fdf8ec 0%,#e8d6a8 48%,#c9a961 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.stack .sub{
+  display:block; font-family:'Caveat Brush',cursive; font-size:calc(34*var(--n));
+  color:#e8d6a8; text-align:center; margin-top:calc(4*var(--n)); transform:rotate(-3deg);
+  -webkit-text-fill-color:#e8d6a8;
+}
+.stack .rule{width:calc(96*var(--n)); height:1px; margin:calc(22*var(--n)) auto calc(6*var(--n));
+  background:linear-gradient(90deg,transparent,#c9a961,transparent)}
+.stack .tally{text-align:center; font-size:calc(12*var(--n)); letter-spacing:.24em;
+  text-transform:uppercase; font-weight:700; color:rgba(233,214,168,.78)}
+
+.rack-wrap{position:relative; margin-top:calc(34*var(--n)); padding-bottom:calc(12*var(--n))}
+.racks{
+  display:grid; grid-template-columns:repeat(2,1fr);
+  column-gap:calc(42*var(--n)); row-gap:calc(26*var(--n));
+}
+.grp{min-width:0}
+.glabel{
+  display:flex; align-items:center; gap:calc(10*var(--n)); margin-bottom:calc(10*var(--n));
+  font-size:calc(10.5*var(--n)); letter-spacing:.22em; text-transform:uppercase;
+  font-weight:700; color:#e8d6a8; white-space:nowrap;
+}
+.glabel i{flex:1; height:1px; font-style:normal;
+  background:linear-gradient(90deg, rgba(233,214,168,.5), transparent)}
+.glabel b{font-weight:700; color:rgba(233,214,168,.5); font-size:calc(9.5*var(--n))}
+.rack{
+  display:flex; align-items:flex-end; flex-wrap:nowrap;
+  gap:calc(6*var(--n)); perspective:1200px;
+}
+.tcard{
+  position:relative; flex:0 0 auto; cursor:pointer; overflow:hidden;
+  width:calc(40*var(--n)); height:calc(142*var(--n)); border-radius:calc(7*var(--n));
+  background:linear-gradient(165deg,#1e6f4e 0%,#14563c 55%,#0e4430 100%);
+  box-shadow:inset 0 0 0 1px rgba(233,214,168,.34),
+             0 calc(10*var(--n)) calc(22*var(--n)) rgba(0,0,0,.4);
+  transition:width .48s cubic-bezier(.2,.9,.25,1),
+             transform .48s cubic-bezier(.2,.9,.25,1),
+             box-shadow .48s, background .48s;
+  opacity:0; transform:translateY(26px);
+  animation:dealIn .58s cubic-bezier(.3,1.3,.5,1) forwards;
+}
+@keyframes dealIn{to{opacity:1; transform:translateY(0)}}
+.tcard::before{
+  content:''; position:absolute; inset:calc(4*var(--n)); border-radius:calc(4*var(--n));
+  box-shadow:inset 0 0 0 1px rgba(233,214,168,.2); pointer-events:none; z-index:2;
+}
+/* closed: the gilt spine */
+.spine{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg);
+  font-size:calc(11.5*var(--n)); font-weight:700; letter-spacing:.14em;
+  text-transform:uppercase; color:rgba(233,214,168,.92); white-space:nowrap;
+  transition:opacity .26s;
+}
+/* open: the full face */
+.face{
+  position:absolute; inset:0; padding:calc(14*var(--n)) calc(15*var(--n));
+  display:flex; flex-direction:column; justify-content:space-between;
+  opacity:0; transition:opacity .3s .12s; pointer-events:none;
+  width:calc(185*var(--n));
+}
+.face .cat{font-size:calc(9.5*var(--n)); letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:#e8d6a8; white-space:nowrap}
+.face .fl{width:calc(28*var(--n)); height:1px; margin:calc(10*var(--n)) 0;
+  background:linear-gradient(90deg,#c9a961,transparent)}
+.face .nm{font-size:calc(18*var(--n)); font-weight:800; line-height:1.12;
+  letter-spacing:-.02em; color:#fdf8ec}
+.face .no{font-size:calc(10*var(--n)); letter-spacing:.18em; font-weight:700;
+  color:rgba(233,214,168,.7)}
+
+.tcard.on{
+  width:calc(185*var(--n));
+  transform:translateY(calc(-16*var(--n)));
+  background:linear-gradient(165deg,#2a8a63 0%,#1b6447 55%,#124c35 100%);
+  box-shadow:inset 0 0 0 1px rgba(233,214,168,.9),
+             0 calc(24*var(--n)) calc(44*var(--n)) rgba(0,0,0,.5),
+             0 0 calc(40*var(--n)) rgba(201,169,97,.34);
+}
+.tcard.on .spine{opacity:0}
+/* long names would run past the end of a closed card */
+.spine.sm{font-size:calc(9.5*var(--n)); letter-spacing:.06em}
+.spine.xs{font-size:calc(8.5*var(--n)); letter-spacing:.02em}
+.tcard.on .face{opacity:1}
+.tcard.on::after{
+  content:''; position:absolute; top:0; left:-130%; width:58%; height:100%;
+  background:linear-gradient(100deg, rgba(253,248,236,0), rgba(253,248,236,.42), rgba(253,248,236,0));
+  animation:cardSheen .85s cubic-bezier(.4,0,.3,1) forwards; pointer-events:none; z-index:3;
+}
+@keyframes cardSheen{to{left:170%}}
+.rack-hint{margin-top:calc(18*var(--n)); text-align:center;
+  font-size:calc(11*var(--n)); letter-spacing:.2em; text-transform:uppercase;
+  font-weight:700; color:rgba(233,214,168,.5)}
+
+@media (max-width:820px){
+  .stack-scroll{padding:136px 14px 30px}
+  .stack h1{font-size:44px}
+  .stack .sub{font-size:21px}
+  .rack-wrap{margin-top:24px}
+  .racks{grid-template-columns:1fr; row-gap:18px}
+  .rack{gap:5px}
+  .glabel{font-size:10px; margin-bottom:7px}
+  .tcard{width:30px; height:124px}
+  .tcard.on{width:152px; transform:translateY(-10px)}
+  .face{width:152px; padding:13px 12px}
+  .face .nm{font-size:16px}
+  .spine{font-size:10px; letter-spacing:.1em}
+  .rack-hint{font-size:10px; margin-top:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tcard{opacity:1; animation:none}
+  .tcard.on::after,.sp{display:none}
+}
+
 /* ---------- all-projects box (desktop case mode) ---------- */
 .projects{
   position:absolute; left:calc(28*var(--n)); top:calc(98*var(--n));
@@ -378,7 +545,20 @@ body.is-case .about{visibility:hidden}
   line-height:1.05; margin-bottom:calc(14*var(--n))}
 .about p{font-size:calc(16*var(--n)); line-height:1.5; font-weight:500;
   color:rgba(255,255,255,.94)}
-.about #abP2{margin-top:calc(11*var(--n))}
+.about #abP2{margin-top:calc(13*var(--n))}
+.ablink{
+  position:fixed; z-index:4; white-space:nowrap; pointer-events:auto; cursor:pointer;
+  font-size:calc(13.5*var(--n)); font-weight:700; letter-spacing:.06em; color:#fdf8ec;
+  padding:calc(8*var(--n)) calc(16*var(--n)); border-radius:calc(4*var(--n));
+  background:rgba(255,255,255,.1); box-shadow:inset 0 0 0 1px rgba(233,214,168,.45);
+  opacity:0; animation:linkIn .5s ease-out forwards;
+  transition:background .25s, box-shadow .25s;
+}
+@keyframes linkIn{to{opacity:1}}
+.ablink:hover{background:rgba(233,214,168,.3);
+  box-shadow:inset 0 0 0 1px rgba(233,214,168,.95),
+             0 calc(8*var(--n)) calc(20*var(--n)) rgba(0,0,0,.3)}
+body.is-case .ablink, body.is-stack .ablink{visibility:hidden; pointer-events:none}
 .about .lead{margin-top:calc(16*var(--n)); font-size:calc(13.5*var(--n));
   letter-spacing:.1em; text-transform:uppercase; font-weight:700;
   color:rgba(255,255,255,.62)}
@@ -426,17 +606,20 @@ body.is-case .about{visibility:hidden}
   .t2{right:12px; left:auto; top:12px}
   .t3{left:12px; right:auto; top:calc(12px + 44*var(--n))}
   .t4{right:12px; left:auto; top:calc(12px + 44*var(--n))}
+  .t5{left:50%; transform:translateX(-50%); top:calc(12px + 80*var(--n))}
+  .t5:hover{transform:translateX(-50%) translateY(calc(-2*var(--n))) rotate(-1.5deg)}
+  body.is-case .t5{visibility:hidden}
   .tag{font-size:13px; height:30px; padding:0 12px}
 
-  .m-wm{position:absolute; left:3vw; width:94vw; top:calc(12px + 96*var(--n));
+  .m-wm{position:absolute; left:3vw; width:94vw; top:calc(12px + 132*var(--n));
     height:auto; overflow:visible; z-index:2}
   .m-wm text{font-family:'Inter Tight',sans-serif; font-weight:900; font-size:238px;
     letter-spacing:-6px}
-  .m-script{position:absolute; right:6vw; top:calc(12px + 96*var(--n) + 14vw);
+  .m-script{position:absolute; right:6vw; top:calc(12px + 132*var(--n) + 14vw);
     font-family:'Caveat Brush',cursive; font-size:15vw; line-height:1; color:#fff;
     transform:rotate(-7deg); transform-origin:100% 50%; z-index:3;
     text-shadow:0 2px 10px rgba(0,0,0,.2)}
-  .m-badge{position:absolute; right:2vw; top:calc(12px + 96*var(--n) + 9vw);
+  .m-badge{position:absolute; right:2vw; top:calc(12px + 132*var(--n) + 9vw);
     width:27vw; height:calc(27vw * 1030 / 582); z-index:-1; pointer-events:none}
   .m-badge .badge{display:block; left:0; top:0; scale:var(--mbs,.1);
     translate:calc(-288px + 13.5vw) 0; transform-origin:288px 0}
@@ -553,6 +736,7 @@ body.is-case .about{visibility:hidden}
 
   <button class="tag t1 pre" id="tStudio">my studio</button>
   <button class="tag t2 pre" id="tPortfolio">portfolio</button>
+  <button class="tag t5 pre" id="tStack">my stack</button>
   <a class="tag t3 pre" id="tContacts" href="mailto:pranitaurlam@gmail.com">contacts</a>
   <a class="tag t4 pre" id="tDiscuss" href="https://www.linkedin.com/in/pranita-urlam-811869320/" target="_blank" rel="noreferrer">discuss a project</a>
 
@@ -566,15 +750,32 @@ body.is-case .about{visibility:hidden}
   <div class="about" id="about">
     <div class="k" id="abK">About Me</div>
     <p id="abP1"></p>
-    <div class="lead" id="abLead"></div>
-    <div class="chips" id="abChips"></div>
     <p id="abP2"></p>
+  </div>
+
+  <div class="stack" id="stack">
+    <div class="veil"></div>
+    <div class="sparks" id="sparks"></div>
+    <button class="close" id="stackClose" aria-label="Close">&#10005;</button>
+    <div class="stack-scroll">
+      <div class="stack-inner">
+        <h1>MY STACK<span class="sub">things I build with</span></h1>
+        <div class="rule"></div>
+        <div class="tally" id="tally">21 technologies</div>
+        <div class="rack-wrap">
+          <div class="racks" id="rack"></div>
+        </div>
+        <div class="rack-hint" id="rackHint">hover a card to open it</div>
+      </div>
+    </div>
   </div>
 
   <div class="projects" id="projects">
     <div class="ph"><span>All Projects</span><b id="pCount">09</b></div>
     <div id="plist"></div>
   </div>
+
+  <button class="ablink" id="abLink">Skills and Technologies &#8594;</button>
 
   <div class="ticket" id="ticket">
     <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
@@ -657,7 +858,7 @@ const ABOUT = {
   lead:'I have experience with',
   skills:['C','Python','Java','GO lang','JavaScript','HTML','CSS','SQL','DSA','React.js','Node.js',
           'Express.js','MongoDB','Mongoose','Redux tool-kit','DataScience','Mathematics (AI/ML)','System Design'],
-  p2:'\u2026 and I\u2019m exploring full-stack development. I\u2019m actively looking for opportunities to learn, contribute, and grow as a software engineer.'
+  p2:'I\u2019m exploring full-stack development and actively looking for opportunities to learn, contribute, and grow as a software engineer.'
 };
 
 // Reveals text one character at a time. Every span holds its REAL glyph and is
@@ -682,23 +883,88 @@ function charReveal(el, text, delay, step){
 }
 
 function buildAbout(base){
-  const t1 = charReveal($('abK'),    'About Me', base, 46);
-  const t2 = charReveal($('abP1'),   ABOUT.p1,      base+180, 5);
-  const t3 = charReveal($('abLead'), ABOUT.lead,    t2+120, 12);
-  const chips=$('abChips'); chips.innerHTML='';
-  ABOUT.skills.forEach((sk,k)=>{
-    const c=document.createElement('span'); c.className='chip'; c.textContent=sk;
-    const d = t3 + 90 + k*42;
-    c.style.animationDelay = d+'ms';
-    c.style.setProperty('--sd', (d+260)+'ms');
-    chips.appendChild(c);
-  });
-  const t4 = t3 + 90 + ABOUT.skills.length*42;
-  charReveal($('abP2'), ABOUT.p2, t4 + 120, 4);
-  return t4;
+  charReveal($('abK'), 'About Me', base, 46);
+  const t2 = charReveal($('abP1'), ABOUT.p1, base+180, 5);
+  const t3 = charReveal($('abP2'), ABOUT.p2, t2+140, 5);
+  // the button is the main call to action - don't make it wait out the whole reveal
+  $('abLink').style.animationDelay=(base+620)+'ms';
+  return t3;
 }
 
-let mode='hero', idx=0, busy=false, sway=null;
+const STACK = [
+  ['Languages',   ['C','Java','JavaScript','Python','GO lang','DSA']],
+  ['Frontend',    ['HTML','CSS','React.js','Redux tool-kit']],
+  ['Backend',     ['Node.js','Express.js']],
+  ['Database',    ['SQL','PostgreSQL','MongoDB','Mongoose']],
+  ['Foundations', ['DataScience','Mathematics (AI/ML)','System Design']],
+  ['Tools',       ['Git','GitHub']]
+];
+
+const TECH = STACK.flatMap(([cat,items]) => items.map(name => ({cat,name})));
+let deckActive = -1;
+
+function buildStack(){
+  const host=$('rack'); host.innerHTML=''; deckActive=-1;
+  let n=0;
+  STACK.forEach(([label,items])=>{
+    const g=document.createElement('div'); g.className='grp';
+    const lab=document.createElement('div'); lab.className='glabel';
+    lab.innerHTML='<span></span><i></i><b></b>';
+    lab.querySelector('span').textContent=label;
+    lab.querySelector('b').textContent=String(items.length).padStart(2,'0');
+    const rack=document.createElement('div'); rack.className='rack';
+    items.forEach(name=>{
+      const i=n++;
+      const c=document.createElement('div');
+      c.className='tcard'; c.dataset.i=i;
+      c.style.animationDelay=(160+i*38)+'ms';
+      c.innerHTML='<div class="spine"></div>'+
+        '<div class="face"><div><div class="cat"></div><div class="fl"></div>'+
+        '<div class="nm"></div></div><div class="no"></div></div>';
+      const sp=c.querySelector('.spine');
+      sp.textContent=name;
+      if(name.length>16) sp.classList.add('xs');
+      else if(name.length>12) sp.classList.add('sm');
+      c.querySelector('.cat').textContent=label;
+      c.querySelector('.nm').textContent=name;
+      c.querySelector('.no').textContent=String(i+1).padStart(2,'0')+' / '+
+        String(TECH.length).padStart(2,'0');
+      c.addEventListener('pointerenter', ()=>raise(i));
+      c.addEventListener('click', ()=>raise(deckActive===i?-1:i));
+      rack.appendChild(c);
+    });
+    g.appendChild(lab); g.appendChild(rack); host.appendChild(g);
+  });
+  host.addEventListener('pointerleave', ()=>raise(-1));
+  $('tally').textContent = TECH.length + ' technologies';
+  $('rackHint').textContent = matchMedia('(hover: none)').matches
+    ? 'tap a card to open it' : 'hover a card to open it';
+}
+
+function raise(i){
+  deckActive = i;
+  document.querySelectorAll('.tcard').forEach(c=>
+    c.classList.toggle('on', +c.dataset.i === i));
+}
+
+// Flexbox lays the rack out; nothing to compute.
+function layoutDeck(){}
+
+function buildSparks(){
+  const w=$('sparks'); w.innerHTML='';
+  if(RM) return;
+  for(let i=0;i<16;i++){
+    const d=document.createElement('i');
+    d.className='sp';
+    d.style.left=(Math.random()*100)+'%';
+    d.style.top=(12+Math.random()*80)+'%';
+    d.style.setProperty('--dur',(5.5+Math.random()*5).toFixed(1)+'s');
+    d.style.setProperty('--dl',(Math.random()*6).toFixed(1)+'s');
+    w.appendChild(d);
+  }
+}
+
+let mode='hero', prevMode='hero', idx=0, busy=false, sway=null;
 const isM = () => innerWidth <= 820;
 
 /* ---------- camera ---------- */
@@ -761,9 +1027,19 @@ function fitHero(p){
   script.style.left = (vl + pad + 70) + 'px';
 }
 
+// The portrait occupies frame-space x 560..880, y 150..550. Convert its
+// bottom-centre into viewport space so the button tracks it in any pose.
+function placeStackBtn(p){
+  const btn=$('abLink');
+  btn.style.left = (p.x + 720*p.s) + 'px';
+  btn.style.top  = (p.y + 550*p.s + (isM()?18:26)) + 'px';
+  btn.style.transform = 'translateX(-50%)';
+}
+
 function place(m){
   const p = pose(m);
   frame.style.transform = 'translate('+p.x+'px,'+p.y+'px) scale('+p.s+')';
+  if(m==='hero') placeStackBtn(p);
   frame.classList.toggle('m-case', m==='case');
   stage.classList.toggle('m-case', m==='case' && isM());
   frame.classList.toggle('d-fade', !isM());
@@ -783,6 +1059,7 @@ function unit(){
 
 function layout(){
   unit();
+  if(mode==='stack') requestAnimationFrame(layoutDeck);
   frame.classList.remove('glide');
   place(mode);
 }
@@ -864,7 +1141,7 @@ function enter(){
   if(RM){ pres.forEach(e=>e.classList.remove('pre')); $('about').style.opacity=1; buildAbout(0); return; }
   pres.forEach(e=>{ e.classList.remove('pre'); e.style.opacity=0; });
 
-  const tags=[$('tStudio'),$('tPortfolio'),$('tContacts'),$('tDiscuss')];
+  const tags=[$('tStudio'),$('tPortfolio'),$('tStack'),$('tContacts'),$('tDiscuss')];
   tags.forEach((t,i)=>t.animate(
     [{opacity:0, transform:'translateY(-40px) rotate(-4deg)'},{opacity:1, transform:'none'}],
     {duration:700, delay:120+i*80, easing:'cubic-bezier(.3,1.5,.5,1)', fill:'both'}));
@@ -918,7 +1195,7 @@ async function toCase(){
   const o={duration:D(380), easing:OUT, fill:'forwards'};
   wm.animate([{transform:'none',opacity:1},{transform:'translateY(-40px)',opacity:0}],o);
   mwm && mwm.animate([{opacity:1},{opacity:0}],o);
-  [script,mscript,mbadge,$('about')].forEach(e=>e&&e.animate([{opacity:1},{opacity:0}],o));
+  [script,mscript,mbadge,$('about'),$('abLink')].forEach(e=>e&&e.animate([{opacity:1},{opacity:0}],o));
   if(sway){ sway.cancel(); sway=null; }
   badge.animate([{transform:'none',opacity:1},
     {transform:'translateY(-110%) rotate(-6deg)',opacity:0}],o);
@@ -1029,7 +1306,8 @@ async function toHero(){
     [{opacity:0, clipPath:'inset(0 100% 0 0)'},{opacity:1, clipPath:'inset(0)'}],
     {duration:D(700), delay:D(250), easing:EASE, fill:'forwards'}));
   const about=$('about');
-  about.animate([{opacity:0},{opacity:1}],{duration:D(500), easing:EASE, fill:'forwards'});
+  [about,$('abLink')].forEach(e=>e.animate([{opacity:0},{opacity:1}],
+    {duration:D(500), easing:EASE, fill:'forwards'}));
   if(!RM) buildAbout(120);
 
   const drop = badge.animate(
@@ -1043,12 +1321,42 @@ async function toHero(){
 }
 
 const wait = ms => new Promise(r=>setTimeout(r,ms));
-function next(){ mode==='hero' ? toCase() : (idx===CASES.length-1 ? swapTo(0) : swapTo(idx+1)); }
+
+async function toStack(){
+  if(busy || mode==='stack') return;
+  busy=true;
+  const from=mode; prevMode=from;
+  if(from==='case'){ caseOut(); screen.animate([{opacity:1},{opacity:0}],
+    {duration:D(260), easing:EASE, fill:'forwards'}); }
+  document.body.classList.add('is-stack');
+  // replay the reveal every time the page is opened
+  buildStack(); buildSparks();
+  mode='stack';
+  await wait(D(420));
+  busy=false;
+}
+
+function leaveStack(){
+  document.body.classList.remove('is-stack');
+  $('grid').innerHTML=''; $('sparks').innerHTML='';
+}
+
+// Close the stack page and restore whichever mode it was opened from.
+function backFromStack(){
+  leaveStack();
+  if(prevMode==='case'){ mode='case'; screen.style.opacity=1; caseIn(idx,false); }
+  else mode='hero';
+}
+function next(){
+  if(mode==='stack') return;
+  mode==='hero' ? toCase() : (idx===CASES.length-1 ? swapTo(0) : swapTo(idx+1));
+}
 function prev(){ if(mode!=='case') return; idx===0 ? toHero() : swapTo(idx-1); }
 
 /* ---------- input ---------- */
 let lock=0;
 addEventListener('wheel', e=>{
+  if(mode==='stack') return;           // the stack page scrolls normally
   e.preventDefault();
   if(Math.abs(e.deltaY) < 18) return;
   const t=Date.now(); if(t-lock < 900) return; lock=t;
@@ -1058,23 +1366,43 @@ addEventListener('wheel', e=>{
 let ty=0, tx=0;
 addEventListener('touchstart', e=>{ ty=e.touches[0].clientY; tx=e.touches[0].clientX; }, {passive:true});
 addEventListener('touchend', e=>{
+  if(mode==='stack') return;
   const dy = ty - e.changedTouches[0].clientY;
   const dx = tx - e.changedTouches[0].clientX;
   if(Math.abs(dy) < 40 && Math.abs(dx) < 40) return;
   if(Math.abs(dy) >= Math.abs(dx)) dy > 0 ? next() : prev();
   else dx > 0 ? next() : prev();
 }, {passive:true});
-addEventListener('touchmove', e=>e.preventDefault(), {passive:false});
+addEventListener('touchmove', e=>{
+  if(mode==='stack' && e.target.closest('.stack-scroll')) return;
+  e.preventDefault();
+}, {passive:false});
 
 addEventListener('keydown', e=>{
   const k=e.key;
+  if(mode==='stack'){
+    if(k==='Escape'){ e.preventDefault(); toHero(); }
+    return;
+  }
   if(['ArrowDown','PageDown',' ','ArrowRight'].includes(k)){ e.preventDefault(); next(); }
   else if(['ArrowUp','PageUp','ArrowLeft'].includes(k)){ e.preventDefault(); prev(); }
 });
 
-$('tPortfolio').addEventListener('click', ()=> mode==='hero' ? toCase() : null);
-$('tStudio').addEventListener('click', toHero);
-logo.addEventListener('click', toHero);
+function goStudio(){
+  if(mode==='stack') backFromStack();
+  if(mode==='case') toHero();
+}
+
+$('tStack').addEventListener('click', toStack);
+$('abLink').addEventListener('click', toStack);
+$('stackClose').addEventListener('click', goStudio);
+
+$('tPortfolio').addEventListener('click', ()=>{
+  if(mode==='stack'){ backFromStack(); }
+  if(mode==='hero') toCase();
+});
+$('tStudio').addEventListener('click', goStudio);
+logo.addEventListener('click', goStudio);
 btnNext.addEventListener('click', next);
 btnPrev.addEventListener('click', prev);
 screenHit.addEventListener('click', next);
